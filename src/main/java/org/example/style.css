@@ -1,0 +1,135 @@
+/*Селекторы элементов*/
+body {
+    background-color: #DEBDBB;
+    color: #2B465E;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C47F7B;
+    color: #BACDDE;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #C47F7B;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/*Каскадная таблица*/
+.header {
+    text-align: left;
+}
+
+.header h1 {
+    font-family: monospace;
+    font-size: 50px; /* Размер шрифта заголовка */
+    color: #C47F7B; /* Цвет шрифта заголовка */
+}
+
+.header h3 {
+    font-family: monospace;
+    font-size: 20px; /* Размер шрифта заголовка */
+    color: #C47F7B; /* Цвет шрифта заголовка */
+}
+
+/*Селекторы классов*/
+.container {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%; /* Уменьшаем масштаб контейнера */
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
+.left-block {
+    padding: 10px;
+    left: 10%;
+}
+
+.right-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+label, select, input, button {
+    width: 10%;
+}
+
+#yInput {
+     font-size: 15px; /* Увеличение размера текста */
+     padding: 20px;    /* Дополнительно можно настроить отступы внутри поля */
+ }
+
+/*Селекторы идентификаторов*/
+#graph {
+    width: 30%;
+    padding: 10px;
+    left: 35%; /* Центрируем график */
+    align-content: center;
+}
+
+#radios {
+    display: flex;
+    justify-content: center; /* Выравнивание радио-кнопок по центру */
+    left: 35%; /* Центрируем график */
+}
+
+#buttons {
+    display: flex;          /* Выровнять кнопки горизонтально */
+    justify-content: center; /* Центрировать кнопки */
+    margin-top: 20px;       /* Отступ сверху */
+}
+
+#buttons button {
+    margin: 5px;            /* Отступ между кнопками */
+    padding: 10px 20px;     /* Размер кнопок */
+    font-size: 16px;        /* Размер текста на кнопках */
+}
+
+/* Комбинация селекторов */
+#table th {
+    background-color: #C47F7B;
+}
+
+/* Селекторы атрибутов */
+input[type="number"] {
+    justify-content: center;
+    align-items: center;
+
+    padding: 5%;
+    border: none;
+    border-radius: 15px;
+    width: 70%;
+    max-width: 300px;
+    background-color: #C47F7B;
+    color: #DEBDBB;
+}
+
+/* Каскадирование */
+h1.results{
+    font-family: "Lucida Console", Courier, monospace;
+    text-align: left;
+}
+
+h2.headerOfTable{
+    font-family: "Lucida Console", Courier, monospace;
+    text-align: center;
+}
+
+h4.input{
+    font-family: "Lucida Console", Courier, monospace;
+    text-align: center;
+}
