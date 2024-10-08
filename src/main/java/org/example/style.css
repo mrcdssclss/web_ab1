@@ -81,12 +81,6 @@ label, select, input, button {
     align-content: center;
 }
 
-#radios {
-    display: flex;
-    justify-content: center; /* Выравнивание радио-кнопок по центру */
-    left: 35%; /* Центрируем график */
-}
-
 #buttons {
     display: flex;          /* Выровнять кнопки горизонтально */
     justify-content: center; /* Центрировать кнопки */

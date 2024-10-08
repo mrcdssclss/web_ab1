@@ -62,7 +62,6 @@
 
                     <text fill="white" x="160" y="10">Y</text>
                     <text fill="white" x="290" y="140">X</text>
-
                 </svg>
             </div>
         </section>
@@ -70,10 +69,9 @@
 </div>
 
 <div class="right-block">
-    <label for="select-x">Выберите X</label>
-    <select name="x" id="select-x">
-        <option value="">--Выберите X</option>
-        <option value="-2">-2</option>
+    <label >Выберите X</label>
+    <select id="selectX">
+        <option value="-2" selected>-2</option>
         <option value="-1.5">-1.5</option>
         <option value="-1">-1</option>
         <option value="-0.5">-0.5</option>
@@ -83,12 +81,11 @@
         <option value="1.5">1.5</option>
         <option value="2">2</option>
     </select>
-    <label for="yInput">Введите Y</label>
+    <label>Введите Y</label>
     <input type="number" id="yInput" step="any" min="-5" max="3" placeholder="Введите y"/>
-    <label for="select-r">Выберите R</label>
-    <select name="r" id="select-r">
-        <option value="">--Выберите R</option>
-        <option value="1">1</option>
+    <label>Выберите R</label>
+    <select id="selectR">
+        <option value="1" selected>1</option>
         <option value="1.5">1.5</option>
         <option value="2">2</option>
         <option value="2.5">2.5</option>
@@ -96,6 +93,9 @@
     </select>
 
     <button id="getButton" value="1">Проверить</button>
+    <div>
+        <label id="status"></label>
+    </div>
 </div>
 <h1 class="results">Результаты</h1>
 
@@ -113,39 +113,19 @@
 </div>
 
 <script charset="utf-8" type="text/javascript">
-    // Создаем список чисел от -5 до 3
-    const numbers = [-5, -4, -3, -2, -1, 0, 1, 2, 3];
     let x = 0;
     let y = 10;
     let r = 0;
 
-    // Функция для создания и добавления кнопок
-    function createButtons() {
-        const buttonContainer = document.getElementById('buttons');
-        numbers.forEach(number => {
-            const button = document.createElement('button');
-            button.textContent = number; // Устанавливаем текст кнопки
-            button.onclick = function () {
-                y = number; // Записываем значение в y
-                console.log("Значение y:", y); // Выводим значение в консоль (можно убрать)
-            };
-            buttonContainer.appendChild(button); // Добавляем кнопку в контейнер
-        });
-    }
-    // Создаем кнопки при загрузке страницы
-    createButtons();
-
     function sendRequest() {
-        const url = new URL('./fcgi-bin/my_app.jar', window.location.href);
-        url.searchParams.set('x', x);
-        url.searchParams.set('y', y);
-        url.searchParams.set('r', r);
+        const data = `x=${encodeURIComponent(x)}&y=${encodeURIComponent(y)}&r=${encodeURIComponent(r)}`
 
-        fetch(url.href, {
+        fetch('./fcgi-bin/my_app.jar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            },
+            body: data
         })
             .then(response => {
                 if (!response.ok) {
@@ -173,10 +153,9 @@
                 serverTimeCell.innerText = jsonResult.serverTime; // Пример: берем x из результата
                 executionTimeCell.innerText = jsonResult.executionTime; // Пример: берем y из результата
                 answerCell.innerText = jsonResult.answer ? "Входит" : "Не входит"; // Устанавливаем ответ
-                // createNotification("Ответ сервера: " + result); // Вызываем уведомление
             })
             .catch(error => {
-                // createNotification("Ошибка: " + error.message);
+                document.getElementById("status").innerText = error.message;
             });
     }
 
@@ -185,56 +164,17 @@
     }
 
     document.getElementById("getButton").onclick = async function () {
-        x = document.getElementById("xInput").value;
-        // let y = document.getElementById("yInput").value;
-        const radios = document.getElementsByName('number');
-        // Ищем выбранное значение
-        for (const radio of radios) {
-            if (radio.checked) {
-                r = radio.value;
-                break;
-            }
-        }
-        if ("Notification" in window) {
-            // Запрашиваем у пользователя разрешение на отображение уведомлений
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    if (isEmptyString(x) || x < -5 || x > 5) {
-                        // Создаем уведомление
-                        const notification = new Notification("Некорректное значение для x", {
-                            body: "X должен быть целым числом от -2 до 2",
-                        });
-                        notification.onclick = () => {
-                            window.open("http://ваш_сайт.com"); // Открывает сайт при клике
-                        };
-                        return;
-                    } else if (y === 10) {
-                        // Создаем уведомление
-                        const notification = new Notification("Некорректное значение для y", {
-                            body: "Выберите одно из предложенных значений для Y",
-                        });
-                        notification.onclick = () => {
-                            window.open("http://ваш_сайт.com"); // Открывает сайт при клике
-                        };
-                        return;
-                    } else if (r === 0) {
-                        // Создаем уведомление
-                        const notification = new Notification("Некорректное значение для R", {
-                            body: "Выберите одно из предложенных значений для R",
-                        });
-                        notification.onclick = () => {
-                            window.open("http://ваш_сайт.com"); // Открывает сайт при клике
-                        };
-                        return;
-                    } else {
-                        sendRequest()
-                    }
-                } else {
-                    console.log("Разрешение на уведомления не получено.");
-                }
-            });
+        document.getElementById("status").innerText = "";
+
+        x = document.getElementById("selectX").value;
+        y = document.getElementById("yInput").value;
+        r = document.getElementById("selectR").value;
+
+        if (isEmptyString(y) || y < -5 || y > 3) {
+            document.getElementById("status").innerText = "Некорректное значение для y";
+            return;
         } else {
-            console.log("Ваш браузер не поддерживает уведомления.");
+            sendRequest()
         }
     }
     </script>

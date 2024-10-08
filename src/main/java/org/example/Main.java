@@ -2,6 +2,7 @@ package org.example;
 
 import com.fastcgi.FCGIInterface;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,23 +44,12 @@ class Main {
         while (fcgiInterface.FCGIaccept() >= 0) {
             long startTime = System.nanoTime();
             try {
-                var queryParams = System.getProperties().getProperty("QUERY_STRING");
+                String body = readRequestBody();
+                Map<String, String> params = parse(body);
 
-                // Разбираем QUERY_STRING
-                Map<String, String> params = new HashMap<>();
-                if (queryParams != null && !queryParams.isEmpty()) {
-                    String[] pairs = queryParams.split("&");
-                    for (String pair : pairs) {
-                        String[] keyValue = pair.split("=");
-                        if (keyValue.length == 2) {
-                            params.put(keyValue[0], keyValue[1]);
-                        }
-                    }
-                }
-
-                float x = Float.parseFloat(params.getOrDefault("x", "Неизвестный"));
-                int y = Integer.parseInt(params.getOrDefault("y", "Неизвестный"));
-                r = Integer.parseInt(params.getOrDefault("r", "Неизвестный"));
+                float x = Float.parseFloat(params.get("x"));
+                int y = Integer.parseInt(params.get("y"));
+                r = Integer.parseInt(params.get("r"));
 
                 boolean insideRectangle = isInsideRectangle(x, y, r, r, r);
                 boolean insidePolygon = isInsidePolygon(x, y);
@@ -85,6 +75,38 @@ class Main {
         }
     }
 
+    private static String readRequestBody() throws IOException {
+        try {
+            FCGIInterface.request.inStream.fill();
+            int contentLength = FCGIInterface.request.inStream.available();
+            var buffer = ByteBuffer.allocate(contentLength);
+            var readBytes = FCGIInterface.request.inStream.read(buffer.array(), 0, contentLength);
+            var requestBodyRaw = new byte[readBytes];
+            buffer.get(requestBodyRaw);
+            buffer.clear();
+            return new String(requestBodyRaw, StandardCharsets.UTF_8);
+        } catch (NullPointerException e){
+            return "";
+        }
+    }
+
+    private static Map<String, String> parse(String queryParams){
+        Map<String, String> params = new HashMap<>();
+        if (queryParams != null && !queryParams.isEmpty()) {
+            String[] pairs = queryParams.split("&");
+            for (String pair : pairs) {
+                String[] keyValue = pair.split("=");
+                if (keyValue.length == 2) {
+                    params.put(keyValue[0], keyValue[1]);
+                }
+            }
+
+        } else {
+            return params;
+        }
+
+        return params;
+    }
     private static boolean isInsideRectangle(double px, double py, double rectY, double width, double height) {
         return (px >= (double) 0 && px <= (double) 0 + width) && (py >= rectY && py <= rectY + height);
     }
