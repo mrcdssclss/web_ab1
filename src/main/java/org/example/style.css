@@ -81,18 +81,6 @@ label, select, input, button {
     align-content: center;
 }
 
-#buttons {
-    display: flex;          /* Выровнять кнопки горизонтально */
-    justify-content: center; /* Центрировать кнопки */
-    margin-top: 20px;       /* Отступ сверху */
-}
-
-#buttons button {
-    margin: 5px;            /* Отступ между кнопками */
-    padding: 10px 20px;     /* Размер кнопок */
-    font-size: 16px;        /* Размер текста на кнопках */
-}
-
 /* Комбинация селекторов */
 #table th {
     background-color: #C47F7B;

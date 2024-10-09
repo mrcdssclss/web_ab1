@@ -15,9 +15,8 @@
         <section class="block plot-section">
             <div class="graph">
                 <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
-
+                    <!-- четверть круга, левая нижняя часть -->
                     <circle cx="150" cy="150" r="50" fill="#8F4A46" fill-opacity="0.6" />
-
                     <rect x="100" y="100" width="50" height="50" fill="#DEBDBB" fill-opacity="1" />
                     <rect x="150" y="50" width="50" height="200" fill="#DEBDBB" fill-opacity="1" />
 
@@ -131,11 +130,11 @@
                 if (!response.ok) {
                     throw new Error('Ошибка сети или сервера');
                 }
-                return response.text(); // Возвращаем текст ответа
+                return response.text();
             })
             .then(result => {
                 const table = document.getElementById("resultsTable");
-                const newRow = table.insertRow(); // Добавляем новую строку
+                const newRow = table.insertRow();
 
                 // Заполняем ячейки новой строки
                 const xCell = newRow.insertCell(0);
@@ -145,9 +144,9 @@
                 const executionTimeCell = newRow.insertCell(4);
                 const serverTimeCell = newRow.insertCell(5);
 
-                xCell.innerText = x; // Пример: берем x из результата
-                yCell.innerText = y; // Пример: берем y из результата
-                rCell.innerText = r; // Пример: берем y из результата
+                xCell.innerText = x;
+                yCell.innerText = y;
+                rCell.innerText = r;
 
                 const jsonResult = JSON.parse(result);
                 serverTimeCell.innerText = jsonResult.serverTime; // Пример: берем x из результата

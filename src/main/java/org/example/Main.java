@@ -56,7 +56,7 @@ class Main {
                 boolean insidePath = isInsidePath(x, y);
 
                 var json = String.format(RESULT_JSON, insideRectangle || insidePolygon || insidePath, System.nanoTime() - startTime, LocalDateTime.now().format(formatter));
-                var responseBody = json.trim(); // Удаляем лишние пробелы
+                var responseBody = json.trim();
                 var response = String.format(HTTP_RESPONSE, responseBody.getBytes(StandardCharsets.UTF_8).length, responseBody);
                 try {
                     FCGIInterface.request.outStream.write(response.getBytes(StandardCharsets.UTF_8));
@@ -67,7 +67,7 @@ class Main {
 
             } catch (Exception ex) {
                 var json = String.format(ERROR_JSON, ex.getMessage());
-                var responseBody = json.trim(); // Удаляем лишние пробелы
+                var responseBody = json.trim();
                 var response = String.format(HTTP_ERROR, responseBody.getBytes(StandardCharsets.UTF_8).length, responseBody);
                 FCGIInterface.request.outStream.write(response.getBytes(StandardCharsets.UTF_8));
                 FCGIInterface.request.outStream.flush();
