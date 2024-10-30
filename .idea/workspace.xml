@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9134cb-239f-41a2-97cd-493db2f2ce86" name="Changes" comment="pt 1.1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/web_lab1_jar/my_app.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/web_lab1_jar/my_app.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea9134cb-239f-41a2-97cd-493db2f2ce86" name="Changes" comment="pt 1.1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,12 +39,18 @@
     &quot;assignee&quot;: &quot;mrcdssclss&quot;
   }
 }</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="ade113ea-32f3-4ea5-8a84-e745f72e7139" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mrcdssclss/web_ab1.git&quot;,
     &quot;accountId&quot;: &quot;ade113ea-32f3-4ea5-8a84-e745f72e7139&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -79,10 +79,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -118,7 +118,7 @@
       <workItem from="1729612349473" duration="23306000" />
       <workItem from="1730280404821" duration="490000" />
       <workItem from="1730281052799" duration="62000" />
-      <workItem from="1730281230511" duration="290000" />
+      <workItem from="1730281230511" duration="590000" />
     </task>
     <task id="LOCAL-00001" summary="pt 1.1">
       <option name="closed" value="true" />
@@ -160,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728462727224</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pt 1.1">
+      <option name="closed" value="true" />
+      <created>1730281540000</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730281540000</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
